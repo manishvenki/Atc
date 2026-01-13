@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ATS Resume Analyzer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>ATS Resume Analyzer</h1>
+    <p>For Computer Science Job Roles</p>
+
+    <label>Choose Job Role</label>
+    <select id="jobRole">
+        <option>Software Developer</option>
+        <option>Cloud Engineer</option>
+        <option>DevOps Engineer</option>
+        <option>Data Analyst</option>
+        <option>Cyber Security Analyst</option>
+        <option>AI / ML Engineer</option>
+    </select>
+
+    <label>Upload Resume (PDF / DOCX)</label>
+    <input type="file" id="resumeFile" />
+
+    <button onclick="analyzeResume()">Analyze Resume</button>
+
+    <div id="result" class="result hidden">
+        <h2>ATS Result</h2>
+        <p id="score"></p>
+        <ul id="tips"></ul>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
