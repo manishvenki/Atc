@@ -2,18 +2,25 @@ async function analyzeResume() {
     const role = document.getElementById("jobRole").value;
     const file = document.getElementById("resumeFile").files[0];
 
+    if (!role) {
+        alert("Please select a job role");
+        return;
+    }
+
     if (!file) {
         alert("Please upload your resume");
         return;
     }
 
     try {
-        const response = await fetch("/api/analyzeResume", {
+        // Create form data for file upload
+        const formData = new FormData();
+        formData.append("resume", file);
+        formData.append("jobRole", role);
+
+        const response = await fetch("/api/uploadResume", {
             method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({ jobRole: role })
+            body: formData   // ❗ NO headers here
         });
 
         if (!response.ok) {
@@ -24,7 +31,7 @@ async function analyzeResume() {
 
         // Show score
         document.getElementById("score").innerText =
-            `ATS Score for ${data.role}: ${data.score} / 100`;
+            `ATS Score: ${data.score} / 100`;
 
         // Show suggestions
         const tipsList = document.getElementById("tips");
@@ -39,7 +46,7 @@ async function analyzeResume() {
         document.getElementById("result").classList.remove("hidden");
 
     } catch (error) {
-        alert("Error analyzing resume. Please try again.");
         console.error(error);
+        alert("Resume upload or analysis failed");
     }
 }
