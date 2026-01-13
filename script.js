@@ -1,4 +1,4 @@
-function analyzeResume() {
+async function analyzeResume() {
     const role = document.getElementById("jobRole").value;
     const file = document.getElementById("resumeFile").files[0];
 
@@ -6,21 +6,6 @@ function analyzeResume() {
         alert("Please upload your resume");
         return;
     }
-
-    // Dummy response (Phase 1)
-   async function analyzeResume() {
-    const role = document.getElementById("jobRole").value;
-    const file = document.getElementById("resumeFile").files[0];
-
-    if (!file) {
-        alert("Please upload your resume");
-        return;
-    }
-
-    // Prepare data to send
-    const payload = {
-        jobRole: role
-    };
 
     try {
         const response = await fetch("/api/analyzeResume", {
@@ -28,7 +13,7 @@ function analyzeResume() {
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify(payload)
+            body: JSON.stringify({ jobRole: role })
         });
 
         if (!response.ok) {
@@ -37,10 +22,11 @@ function analyzeResume() {
 
         const data = await response.json();
 
-        // Display results from backend
+        // Show score
         document.getElementById("score").innerText =
             `ATS Score for ${data.role}: ${data.score} / 100`;
 
+        // Show suggestions
         const tipsList = document.getElementById("tips");
         tipsList.innerHTML = "";
 
@@ -56,20 +42,4 @@ function analyzeResume() {
         alert("Error analyzing resume. Please try again.");
         console.error(error);
     }
-}
-
-
-    document.getElementById("score").innerText =
-        `ATS Score for ${role}: ${score} / 100`;
-
-    const tipsList = document.getElementById("tips");
-    tipsList.innerHTML = "";
-
-    tips.forEach(tip => {
-        const li = document.createElement("li");
-        li.innerText = tip;
-        tipsList.appendChild(li);
-    });
-
-    document.getElementById("result").classList.remove("hidden");
 }
