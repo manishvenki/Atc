@@ -2,35 +2,59 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>ATS Resume Analyzer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Azure Integrated ATS Resume Analyser</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
 </head>
 <body>
 
-<div class="container">
-    <h1>ATS Resume Analyzer</h1>
-    <p>For Computer Science Job Roles</p>
+<div class="app-container">
+    <header class="main-header">
+        <span class="badge">Enterprise Edition</span>
+        <h1>AZURE INTEGRATED <br><strong>ATS RESUME ANALYSER</strong></h1>
+        <div class="header-line"></div>
+    </header>
 
-    <label>Choose Job Role</label>
-    <select id="jobRole">
-        <option>Software Developer</option>
-        <option>Cloud Engineer</option>
-        <option>DevOps Engineer</option>
-        <option>Data Analyst</option>
-        <option>Cyber Security Analyst</option>
-        <option>AI / ML Engineer</option>
-    </select>
+    <main class="glass-card">
+        <div class="form-section">
+            <div class="input-block">
+                <label for="jobRole">Target Specialization</label>
+                <select id="jobRole">
+                    <option value="" disabled selected>Select Computer Science Role...</option>
+                    <option>Software Developer</option>
+                    <option>Cloud Engineer</option>
+                    <option>DevOps Engineer</option>
+                    <option>Data Analyst</option>
+                    <option>Cyber Security Analyst</option>
+                    <option>AI / ML Engineer</option>
+                </select>
+            </div>
 
-    <label>Upload Resume (PDF / DOCX)</label>
-    <input type="file" id="resumeFile" />
+            <div class="input-block">
+                <label>Document Upload</label>
+                <div class="drop-zone" onclick="document.getElementById('resumeFile').click()">
+                    <div class="icon-circle">
+                        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"></path></svg>
+                    </div>
+                    <p>Click to browse files</p>
+                    <small>Supports: PDF, DOCX (Max 10MB)</small>
+                    <input type="file" id="resumeFile" hidden />
+                </div>
+            </div>
 
-    <button onclick="analyzeResume()">Analyze Resume</button>
+            <button class="primary-button" onclick="analyzeResume()">
+                <span>RUN ANALYSIS</span>
+            </button>
+        </div>
 
-    <div id="result" class="result hidden">
-        <h2>ATS Result</h2>
-        <p id="score"></p>
-        <ul id="tips"></ul>
-    </div>
+        <div id="result" class="result-panel hidden">
+            </div>
+    </main>
+
+    <footer class="creator-footer">
+        <p>Created by <strong>Manish V</strong></p>
+    </footer>
 </div>
 
 <script src="script.js"></script>
