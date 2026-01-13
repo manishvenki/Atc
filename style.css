@@ -153,4 +153,26 @@ select {
     color: var(--navy);
 }
 
+
+/* Add this to your existing CSS */
+
+.brand-logo-container {
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: center;
+}
+
+.header-logo {
+    height: 50px; /* Adjust size as needed */
+    width: auto;
+    object-fit: contain;
+    /* Optional: filter: drop-shadow(0px 4px 4px rgba(0,0,0,0.1)); */
+}
+
+/* Ensure the header-line and badge look balanced with the logo */
+.main-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 .hidden { display: none; }
